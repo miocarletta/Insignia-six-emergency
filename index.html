@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#03060d">
+<title>INSIGNIA SIX — Radar Link</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/1.5.2/peerjs.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+:root{
+  --bg:#03060d;--card:#0d1623;--border:#1a2e48;--text:#c8daf0;--muted:#3a5068;
+  --mio:#f0f4ff;--pena:#4a8edb;--vania:#7ab8f5;--mizu:#9eaab8;--pulu:#3ecf6a;--al:#888;
+}
+html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);overflow:hidden;}
+
+.grid-bg{position:fixed;inset:0;pointer-events:none;
+  background-image:linear-gradient(rgba(20,60,120,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(20,60,120,.06) 1px,transparent 1px);
+  background-size:36px 36px;}
+.grid-bg::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 20%,var(--bg) 80%);}
+
+.screen{display:none;position:fixed;inset:0;z-index:10;overflow-y:auto;
+  flex-direction:column;align-items:center;justify-content:center;padding:24px 16px;}
+.screen.active{display:flex;}
+
+/* ── SCREEN 1: PILIH ── */
+.logo{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--muted);margin-bottom:8px;}
+.screen-title{font-family:'Syne',sans-serif;font-size:clamp(1.6rem,7vw,2.4rem);font-weight:800;color:#e8f0ff;margin-bottom:4px;text-align:center;}
+.screen-sub{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:2px;margin-bottom:28px;text-align:center;}
+
+.char-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;width:min(440px,100%);margin-bottom:20px;}
+@media(min-width:480px){.char-grid{grid-template-columns:repeat(3,1fr);}}
+
+.char-btn{border-radius:16px;border:1px solid;padding:20px 12px;cursor:pointer;transition:all .2s;text-align:center;background:rgba(255,255,255,.02);user-select:none;position:relative;}
+.char-btn:active{transform:scale(.95);}
+@media(hover:hover){.char-btn:hover{transform:scale(1.03);}}
+.char-btn .cb-symbol{font-size:1.8rem;margin-bottom:8px;display:block;}
+.char-btn .cb-name{font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;margin-bottom:2px;}
+.char-btn .cb-role{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1px;opacity:.5;}
+.char-btn .cb-id{position:absolute;top:8px;right:8px;font-family:'Share Tech Mono',monospace;font-size:8px;background:rgba(255,255,255,.1);padding:2px 4px;border-radius:4px;}
+#connectStatus{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:1px;text-align:center;min-height:20px;}
+
+/* ── SCREEN 2: LOBBY ── */
+#screenLobby{justify-content:flex-start;padding-top:0;}
+.lobby-wrap{width:min(480px,100%);padding:20px 0 80px;}
+
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:16px 0 16px;position:sticky;top:0;background:var(--bg);z-index:5;border-bottom:1px solid var(--border);margin-bottom:20px;}
+.topbar-left{display:flex;align-items:center;gap:10px;}
+.my-badge{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.04);border:1px solid;border-radius:99px;padding:6px 14px;}
+.my-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.my-name{font-family:'Syne',sans-serif;font-weight:700;font-size:13px;}
+.online-dot{width:7px;height:7px;border-radius:50%;background:#3ecf6a;box-shadow:0 0 6px #3ecf6a;}
+
+.online-list{display:flex;flex-direction:column;gap:8px;margin-bottom:24px;}
+.online-item{display:flex;align-items:center;justify-content:space-between;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 16px;transition:border-color .2s;}
+.oi-left{display:flex;align-items:center;gap:10px;}
+.oi-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.oi-name{font-family:'Syne',sans-serif;font-weight:700;font-size:14px;}
+.oi-role{font-family:'Share Tech Mono',monospace;font-size:9px;opacity:.5;}
+
+.btn-call{font-family:'Share Tech Mono',monospace;font-size:11px;padding:9px 14px;border-radius:8px;cursor:pointer;border:none;user-select:none;}
+.btn-voice{background:rgba(62,207,106,.15);color:#3ecf6a;border:1px solid rgba(62,207,106,.3);}
+.btn-chat{background:rgba(74,142,219,.12);color:var(--pena);border:1px solid rgba(74,142,219,.25);}
+
+/* ── SCREEN 3: CALL ── */
+#screenCall{background:rgba(3,6,13,.98);justify-content:flex-start;padding:0 16px;}
+.call-wrap{width:min(440px,100%);display:flex;flex-direction:column;align-items:center;height:100%;padding:20px 0 8px;}
+
+.call-header{text-align:center;padding-bottom:12px;width:100%;}
+.call-with{font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem;}
+.call-timer{font-family:'Share Tech Mono',monospace;font-size:13px;color:var(--muted);}
+
+.chat-area{flex:1;width:100%;overflow-y:auto;background:rgba(10,22,40,.5);border:1px solid var(--border);border-radius:16px;padding:12px;display:flex;flex-direction:column;gap:6px;margin:10px 0;}
+.msg{display:flex;gap:8px;align-items:flex-end;}
+.msg.mine{flex-direction:row-reverse;}
+.msg-bubble{max-width:85%;padding:8px 12px;border-radius:12px;font-size:13px;border:1px solid var(--border);background:rgba(255,255,255,.03);word-wrap:break-word;}
+.msg.mine .msg-bubble{background:rgba(74,142,219,.12);border-color:rgba(74,142,219,.25);}
+
+.chat-input-row{display:flex;gap:8px;width:100%;padding:8px 0;}
+.chat-input{flex:1;background:rgba(10,22,40,.8);border:1px solid var(--border);border-radius:12px;padding:12px;color:var(--text);outline:none;}
+.btn-send{background:rgba(74,142,219,.15);border:1px solid rgba(74,142,219,.3);color:var(--pena);border-radius:12px;padding:12px 18px;cursor:pointer;}
+
+.call-controls{display:flex;gap:14px;justify-content:center;padding:10px 0;}
+.ctrl-btn{width:54px;height:54px;border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:20px;}
+.ctrl-end{background:rgba(255,50,50,.18);color:#ff4444;border:1px solid rgba(255,50,50,.35);}
+
+/* INCOMING CALL */
+#incomingCall{position:fixed;inset:0;z-index:500;display:none;align-items:center;justify-content:center;background:rgba(3,6,13,.96);backdrop-filter:blur(8px);}
+#incomingCall.show{display:flex;}
+.incoming-card{background:var(--card);border:1px solid;border-radius:24px;padding:32px;text-align:center;width:min(320px,88vw);}
+.btn-accept{padding:14px;border-radius:14px;background:rgba(62,207,106,.18);color:var(--pulu);font-weight:700;border:1px solid rgba(62,207,106,.4);width:100%;margin-top:15px;cursor:pointer;}
+
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--card);border:1px solid var(--border);border-radius:12px;padding:10px 18px;transition:transform .3s;z-index:600;}
+.toast.show{transform:translateX(-50%) translateY(0);}
+</style>
+</head>
+<body>
+<div class="grid-bg"></div>
+
+<div id="incomingCall">
+  <div class="incoming-card" id="incCard">
+    <div style="font-family:'Share Tech Mono';font-size:10px;margin-bottom:10px;color:var(--muted)">📞 PANGGILAN RADAR</div>
+    <div id="incName" style="font-family:'Syne';font-size:1.8rem;font-weight:800;">—</div>
+    <div id="incRole" style="font-family:'Share Tech Mono';font-size:11px;margin-top:5px;opacity:.6">—</div>
+    <button class="btn-accept" onclick="acceptCall()">ANGKAT PANGGILAN</button>
+    <button onclick="declineCall()" style="background:transparent;border:none;color:var(--muted);margin-top:15px;cursor:pointer;font-size:11px;">ABAIKAN</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<div class="screen active" id="screenSelect">
+  <div class="logo">// INSIGNIA SIX · RADAR</div>
+  <div class="screen-title">Pilih Identitas</div>
+  <div class="char-grid" id="charGrid"></div>
+  <div id="connectStatus"></div>
+</div>
+
+<div class="screen" id="screenLobby">
+  <div class="lobby-wrap">
+    <div class="topbar">
+      <div class="topbar-left">
+        <div class="my-badge" id="myBadge">
+          <div class="my-dot" id="myDot"></div>
+          <div class="my-name" id="myName">—</div>
+        </div>
+      </div>
+      <button class="btn-secondary" style="padding:8px;font-size:9px;" onclick="location.reload()">KELUAR</button>
+    </div>
+    <div style="font-family:'Share Tech Mono';font-size:9px;margin-bottom:15px;color:var(--muted)">INSIGNIA TERDETEKSI:</div>
+    <div class="online-list" id="onlineList"></div>
+  </div>
+</div>
+
+<div class="screen" id="screenCall">
+  <div class="call-wrap">
+    <div class="call-header">
+      <div class="call-with" id="callWith">—</div>
+      <div class="call-timer" id="callTimer">00:00</div>
+    </div>
+    <div class="chat-area" id="chatArea"></div>
+    <div class="chat-input-row">
+      <button class="btn-send" onclick="sendLocation()" title="Kirim Lokasi">📍</button>
+      <input class="chat-input" id="chatInput" placeholder="Ketik pesan..." autocomplete="off">
+      <button class="btn-send" onclick="sendMsg()">↑</button>
+    </div>
+    <div class="call-controls">
+      <button class="ctrl-btn ctrl-end" onclick="endCall()">📵</button>
+      <button class="ctrl-btn" id="btnMute" style="background:rgba(255,255,255,.05);color:white;" onclick="toggleMute()">🎤</button>
+    </div>
+  </div>
+</div>
+
+<audio id="remoteAudio" autoplay playsinline></audio>
+
+<script>
+const CHARS = {
+  MIO:  {id:'I.S-01', name:'MIO',  role:'Metakognisi', color:'#f0f4ff', symbol:'◎', border:'rgba(240,244,255,.2)'},
+  PENA: {id:'I.S-02', name:'PENA', role:'Struktur',    color:'#4a8edb', symbol:'△', border:'rgba(74,142,219,.3)'},
+  VANIA:{id:'I.S-03', name:'VANIA',role:'Persepsi',    color:'#7ab8f5', symbol:'◈', border:'rgba(122,184,245,.25)'},
+  MIZU: {id:'I.S-04', name:'MIZU', role:'Regulasi',    color:'#9eaab8', symbol:'〜', border:'rgba(158,170,184,.25)'},
+  PULU: {id:'I.S-05', name:'PULU', role:'Kebebasan',   color:'#3ecf6a', symbol:'⬡', border:'rgba(62,207,106,.25)'},
+  AL:   {id:'I.S-06', name:'AL',   role:'Kritik',      color:'#888888', symbol:'□', border:'rgba(136,136,136,.25)'},
+};
+
+let myChar = null, peer = null, myStream = null;
+let dataConns = {}, activeCalls = {};
+let onlineChars = new Set();
+let incomingCallObj = null;
+let callTimer = null, callSec = 0;
+let isMuted = false;
+let currentCallTarget = null; 
+
+const PREFIX = 'ins6-v3-'; // Update prefix untuk menghindari cache koneksi lama
+const pid = k => PREFIX + k.toLowerCase();
+
+// Build Grid
+const grid = document.getElementById('charGrid');
+Object.entries(CHARS).forEach(([k,ch])=>{
+  const btn = document.createElement('div');
+  btn.className = 'char-btn';
+  btn.style.borderColor = ch.border;
+  btn.innerHTML = `<span style="color:${ch.color};font-size:1.5rem">${ch.symbol}</span><div style="color:${ch.color};font-weight:800">${ch.name}</div><div style="font-size:8px;opacity:.5">${ch.role}</div>`;
+  btn.onclick = () => selectChar(k);
+  grid.appendChild(btn);
+});
+
+function selectChar(k){
+  myChar = k;
+  document.getElementById('connectStatus').textContent = 'Menghubungkan ke Radar...';
+  
+  peer = new Peer(pid(k), { host:'0.peerjs.com', port:443, secure:true });
+
+  peer.on('open', () => {
+    showScreen('screenLobby');
+    setupLobbyUI();
+    scanOnline();
+    setInterval(scanOnline, 5000); 
+  });
+
+  peer.on('connection', conn => {
+    const sender = conn.peer.replace(PREFIX, '').toUpperCase();
+    if(!onlineChars.has(sender)){
+      onlineChars.add(sender);
+      renderOnline();
+    }
+    handleConnection(conn, sender);
+  });
+
+  peer.on('call', call => {
+    incomingCallObj = call;
+    const caller = call.peer.replace(PREFIX, '').toUpperCase();
+    document.getElementById('incName').textContent = CHARS[caller]?.name || 'UNKNOWN';
+    document.getElementById('incRole').textContent = CHARS[caller]?.role || '';
+    document.getElementById('incCard').style.borderColor = CHARS[caller]?.color || '#fff';
+    document.getElementById('incomingCall').classList.add('show');
+  });
+}
+
+function scanOnline(){
+  Object.keys(CHARS).forEach(k => {
+    if(k === myChar) return;
+    const conn = peer.connect(pid(k));
+    conn.on('open', () => { 
+      if(!onlineChars.has(k)) {
+        onlineChars.add(k); 
+        renderOnline(); 
+      }
+      handleConnection(conn, k);
+    });
+    conn.on('error', () => {
+      if(onlineChars.has(k)) {
+        onlineChars.delete(k);
+        renderOnline();
+      }
+    });
+  });
+}
+
+function handleConnection(conn, sender) {
+  dataConns[sender] = conn;
+  
+  conn.on('data', data => {
+    if(data.type === 'chat') {
+      if(document.getElementById('screenCall').classList.contains('active')) {
+        appendMsg(data, false);
+      } else {
+        showToast('Pesan dari ' + data.sender + ' 💬');
+      }
+    }
+  });
+}
+
+async function callChar(k) {
+  showToast('📞 Menghubungi ' + k + '...');
+  try {
+    myStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    const call = peer.call(pid(k), myStream);
+    currentCallTarget = k;
+    
+    call.on('stream', stream => {
+      startCallUI(k);
+      document.getElementById('remoteAudio').srcObject = stream;
+    });
+    activeCalls[k] = call;
+  } catch (e) { 
+    showToast('❌ Akses Mic Ditolak'); 
+  }
+}
+
+async function acceptCall() {
+  document.getElementById('incomingCall').classList.remove('show');
+  try {
+    myStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    incomingCallObj.answer(myStream);
+    
+    const caller = incomingCallObj.peer.replace(PREFIX, '').toUpperCase();
+    currentCallTarget = caller;
+    
+    incomingCallObj.on('stream', stream => {
+      startCallUI(caller);
+      document.getElementById('remoteAudio').srcObject = stream;
+    });
+    activeCalls[caller] = incomingCallObj;
+  } catch (e) { 
+    showToast('❌ Gagal akses Mic'); 
+  }
+}
+
+function startCallUI(k) {
+  showScreen('screenCall');
+  document.getElementById('callWith').textContent = CHARS[k].symbol + ' ' + CHARS[k].name;
+  document.getElementById('callWith').style.color = CHARS[k].color;
+  document.getElementById('chatArea').innerHTML = ''; 
+  
+  callSec = 0;
+  clearInterval(callTimer);
+  callTimer = setInterval(() => {
+    callSec++;
+    document.getElementById('callTimer').textContent = 
+      String(Math.floor(callSec/60)).padStart(2,'0') + ':' + String(callSec%60).padStart(2,'0');
+  }, 1000);
+}
+
+function sendMsg() {
+  const inp = document.getElementById('chatInput');
+  const txt = inp.value.trim();
+  if(!txt || !currentCallTarget) return;
+
+  const payload = { type: 'chat', sender: myChar, text: txt };
+  
+  if(dataConns[currentCallTarget] && dataConns[currentCallTarget].open) {
+    dataConns[currentCallTarget].send(payload);
+  }
+  
+  appendMsg(payload, true);
+  inp.value = '';
+}
+
+function sendLocation() {
+  if(!currentCallTarget) return;
+  showToast('Membaca lokasi...');
+  
+  navigator.geolocation.getCurrentPosition(p => {
+    const link = `https://www.google.com/maps?q=${p.coords.latitude},${p.coords.longitude}`;
+    const payload = { 
+      type: 'chat', 
+      sender: myChar, 
+      text: `📍 LOKASI DARURAT:<br><a href="${link}" target="_blank" style="color:var(--vania); text-decoration:underline;">Buka di Maps</a>` 
+    };
+    
+    if(dataConns[currentCallTarget] && dataConns[currentCallTarget].open) {
+      dataConns[currentCallTarget].send(payload);
+    }
+    appendMsg(payload, true);
+  }, () => {
+    showToast('❌ Akses Lokasi Ditolak');
+  });
+}
+
+function appendMsg(d, mine) {
+  const area = document.getElementById('chatArea');
+  const div = document.createElement('div');
+  div.className = 'msg ' + (mine ? 'mine' : '');
+  div.innerHTML = `<div class="msg-bubble" style="border-color:${CHARS[d.sender].color}">
+    <div style="font-size:9px;font-weight:800;color:${CHARS[d.sender].color}">${d.sender}</div>
+    ${d.text}
+  </div>`;
+  area.appendChild(div);
+  area.scrollTop = area.scrollHeight;
+}
+
+function toggleMute() {
+  if(!myStream) return;
+  isMuted = !isMuted;
+  myStream.getAudioTracks()[0].enabled = !isMuted;
+  document.getElementById('btnMute').textContent = isMuted ? '🔇' : '🎤';
+  document.getElementById('btnMute').style.color = isMuted ? '#ff4444' : 'white';
+  showToast(isMuted ? 'Mic Dimatikan' : 'Mic Dinyalakan');
+}
+
+function endCall() {
+  location.reload(); 
+}
+
+function renderOnline() {
+  const list = document.getElementById('onlineList');
+  list.innerHTML = '';
+  
+  if(onlineChars.size === 0) {
+    list.innerHTML = '<div style="font-family:\'Share Tech Mono\'; font-size:11px; opacity:0.5; text-align:center; padding:20px 0;">Menunggu agen lain terhubung...</div>';
+    return;
+  }
+  
+  onlineChars.forEach(k => {
+    const ch = CHARS[k];
+    const item = document.createElement('div');
+    item.className = 'online-item';
+    item.innerHTML = `
+      <div class="oi-left">
+        <div class="oi-dot" style="background:${ch.color}"></div>
+        <div><div class="oi-name">${ch.name}</div><div class="oi-role">${ch.role}</div></div>
+      </div>
+      <div>
+        <button class="btn-call btn-voice" onclick="callChar('${k}')">PANGGIL</button>
+      </div>`;
+    list.appendChild(item);
+  });
+}
+
+function setupLobbyUI() {
+  const ch = CHARS[myChar];
+  document.getElementById('myName').textContent = ch.id + ' (' + ch.name + ')';
+  document.getElementById('myDot').style.background = ch.color;
+  document.getElementById('myBadge').style.borderColor = ch.border;
+}
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function showToast(m) {
+  const t = document.getElementById('toast');
+  t.innerHTML = m; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+function declineCall() {
+  document.getElementById('incomingCall').classList.remove('show');
+  if(incomingCallObj) incomingCallObj.close();
+}
+
+// Fitur kirim pesan otomatis saat tekan Enter
+document.getElementById('chatInput').addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') { sendMsg(); }
+});
+</script>
+</body>
+</html>
