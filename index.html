@@ -52,98 +52,46 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--bg);colo
 .my-name{font-family:'Syne',sans-serif;font-weight:700;font-size:13px;}
 .online-dot{width:7px;height:7px;border-radius:50%;background:#3ecf6a;box-shadow:0 0 6px #3ecf6a;}
 
-.section-label{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--muted);margin-bottom:12px;text-transform:uppercase;}
-
 .online-list{display:flex;flex-direction:column;gap:8px;margin-bottom:24px;}
-.online-item{display:flex;align-items:center;justify-content:space-between;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 16px;transition:border-color .2s;animation:fadeIn .3s ease;}
-@keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+.online-item{display:flex;align-items:center;justify-content:space-between;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 16px;transition:border-color .2s;}
 .oi-left{display:flex;align-items:center;gap:10px;}
 .oi-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
 .oi-name{font-family:'Syne',sans-serif;font-weight:700;font-size:14px;}
-.oi-role{font-family:'Share Tech Mono',monospace;font-size:9px;opacity:.5;letter-spacing:1px;}
-.oi-actions{display:flex;gap:8px;}
+.oi-role{font-family:'Share Tech Mono',monospace;font-size:9px;opacity:.5;}
 
-.btn-call{font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:1px;padding:9px 14px;border-radius:8px;cursor:pointer;border:none;transition:all .15s;user-select:none;}
+.btn-call{font-family:'Share Tech Mono',monospace;font-size:11px;padding:9px 14px;border-radius:8px;cursor:pointer;border:none;user-select:none;}
 .btn-voice{background:rgba(62,207,106,.15);color:#3ecf6a;border:1px solid rgba(62,207,106,.3);}
-.btn-voice:active{background:rgba(62,207,106,.3);}
 .btn-chat{background:rgba(74,142,219,.12);color:var(--pena);border:1px solid rgba(74,142,219,.25);}
-.btn-chat:active{background:rgba(74,142,219,.25);}
-
-.empty-state{text-align:center;padding:28px 20px;color:var(--muted);font-family:'Share Tech Mono',monospace;font-size:10px;border:1px dashed var(--border);border-radius:14px;line-height:2;}
-
-.btn-group{width:100%;padding:16px;border-radius:14px;font-family:'Syne',sans-serif;font-weight:700;font-size:14px;cursor:pointer;border:1px solid rgba(62,207,106,.3);background:rgba(62,207,106,.08);color:var(--pulu);transition:all .2s;margin-bottom:10px;display:flex;align-items:center;justify-content:center;gap:8px;}
-.btn-group:active{background:rgba(62,207,106,.2);}
-.btn-group:disabled{opacity:.4;cursor:not-allowed;}
-.btn-secondary{width:100%;padding:12px;border-radius:12px;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:2px;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--muted);transition:all .2s;margin-top:4px;}
-.btn-secondary:active{color:var(--text);border-color:rgba(200,218,240,.3);}
 
 /* ── SCREEN 3: CALL ── */
 #screenCall{background:rgba(3,6,13,.98);justify-content:flex-start;padding:0 16px;}
-.call-wrap{width:min(440px,100%);display:flex;flex-direction:column;align-items:center;height:100%;padding:20px 0 8px;min-height:0;}
+.call-wrap{width:min(440px,100%);display:flex;flex-direction:column;align-items:center;height:100%;padding:20px 0 8px;}
 
-.call-header{text-align:center;padding-bottom:12px;width:100%;flex-shrink:0;}
-.call-status-label{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--muted);margin-bottom:6px;}
-.call-with{font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem;margin-bottom:2px;}
+.call-header{text-align:center;padding-bottom:12px;width:100%;}
+.call-with{font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem;}
 .call-timer{font-family:'Share Tech Mono',monospace;font-size:13px;color:var(--muted);}
 
-.avatars-row{display:flex;gap:16px;justify-content:center;align-items:flex-start;padding:12px 0;flex-wrap:wrap;flex-shrink:0;}
-.avatar{display:flex;flex-direction:column;align-items:center;gap:6px;position:relative;}
-.avatar-ring{width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid;position:relative;}
-.avatar-ring.speaking{animation:speakPulse .7s ease-in-out infinite;}
-@keyframes speakPulse{0%,100%{box-shadow:0 0 0 0 currentColor;}50%{box-shadow:0 0 0 10px rgba(0,0,0,0);}}
-.avatar-symbol{width:32px;height:32px;}
-.avatar-name{font-family:'Syne',sans-serif;font-weight:700;font-size:10px;}
-.muted-badge{position:absolute;bottom:-2px;right:-2px;background:var(--bg);border-radius:50%;width:18px;height:18px;display:none;align-items:center;justify-content:center;font-size:9px;border:1px solid var(--border);}
-.muted-badge.show{display:flex;}
-
-.chat-area{flex:1;width:100%;overflow-y:auto;background:rgba(10,22,40,.5);border:1px solid var(--border);border-radius:16px;padding:12px;display:flex;flex-direction:column;gap:6px;min-height:0;}
-.chat-area::-webkit-scrollbar{width:3px;}
-.chat-area::-webkit-scrollbar-thumb{background:var(--border);border-radius:99px;}
-
+.chat-area{flex:1;width:100%;overflow-y:auto;background:rgba(10,22,40,.5);border:1px solid var(--border);border-radius:16px;padding:12px;display:flex;flex-direction:column;gap:6px;margin:10px 0;}
 .msg{display:flex;gap:8px;align-items:flex-end;}
 .msg.mine{flex-direction:row-reverse;}
-.msg-bubble{max-width:85%;padding:8px 12px;border-radius:12px;font-size:13px;line-height:1.5;border:1px solid var(--border);background:rgba(255,255,255,.03);word-wrap:break-word;}
+.msg-bubble{max-width:85%;padding:8px 12px;border-radius:12px;font-size:13px;border:1px solid var(--border);background:rgba(255,255,255,.03);word-wrap:break-word;}
 .msg.mine .msg-bubble{background:rgba(74,142,219,.12);border-color:rgba(74,142,219,.25);}
-.msg-sender{font-family:'Syne',sans-serif;font-weight:700;font-size:10px;margin-bottom:2px;}
-.msg-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-bottom:4px;}
-.sys-msg{text-align:center;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1px;color:var(--muted);padding:4px 0;}
 
-.chat-input-row{display:flex;gap:8px;width:100%;padding:8px 0 4px;flex-shrink:0;}
-.chat-input{flex:1;background:rgba(10,22,40,.8);border:1px solid var(--border);border-radius:12px;padding:11px 14px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;outline:none;}
-.chat-input:focus{border-color:rgba(74,142,219,.4);}
-.chat-input::placeholder{color:var(--muted);}
-.btn-send{background:rgba(74,142,219,.15);border:1px solid rgba(74,142,219,.3);color:var(--pena);border-radius:12px;padding:11px 16px;cursor:pointer;font-size:16px;transition:all .15s;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
-.btn-send:active{background:rgba(74,142,219,.3);}
+.chat-input-row{display:flex;gap:8px;width:100%;padding:8px 0;}
+.chat-input{flex:1;background:rgba(10,22,40,.8);border:1px solid var(--border);border-radius:12px;padding:12px;color:var(--text);outline:none;}
+.btn-send{background:rgba(74,142,219,.15);border:1px solid rgba(74,142,219,.3);color:var(--pena);border-radius:12px;padding:12px 18px;cursor:pointer;}
 
-.call-controls{display:flex;gap:14px;justify-content:center;padding:10px 0 4px;width:100%;flex-shrink:0;}
-.ctrl-btn{width:54px;height:54px;border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:20px;transition:all .2s;flex-shrink:0;border:1px solid transparent;}
-.ctrl-mute{background:rgba(255,255,255,.07);color:var(--text);border-color:rgba(255,255,255,.1);}
-.ctrl-mute.muted{background:rgba(255,80,80,.15);color:#ff5050;border-color:rgba(255,80,80,.3);}
-.ctrl-mute:active,.ctrl-speaker:active{transform:scale(.9);}
-.ctrl-end{background:rgba(255,50,50,.18);color:#ff4444;font-size:22px;width:62px;height:62px;border-color:rgba(255,50,50,.35);}
-.ctrl-end:active{background:rgba(255,50,50,.4);transform:scale(.9);}
-.ctrl-speaker{background:rgba(255,255,255,.07);color:var(--text);border-color:rgba(255,255,255,.1);}
+.call-controls{display:flex;gap:14px;justify-content:center;padding:10px 0;}
+.ctrl-btn{width:54px;height:54px;border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:20px;}
+.ctrl-end{background:rgba(255,50,50,.18);color:#ff4444;border:1px solid rgba(255,50,50,.35);}
 
-/* ── INCOMING CALL ── */
+/* INCOMING CALL */
 #incomingCall{position:fixed;inset:0;z-index:500;display:none;align-items:center;justify-content:center;background:rgba(3,6,13,.96);backdrop-filter:blur(8px);}
 #incomingCall.show{display:flex;}
-.incoming-card{background:var(--card);border:1px solid;border-radius:24px;padding:32px 28px;text-align:center;width:min(320px,88vw);}
-.inc-pulse{animation:incPulse 1.2s ease-in-out infinite;}
-@keyframes incPulse{0%,100%{box-shadow:0 0 0 0 transparent;}50%{box-shadow:0 0 0 14px rgba(62,207,106,.06);}}
-.inc-label{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--muted);margin-bottom:14px;}
-.inc-symbol{font-size:2.8rem;display:block;margin-bottom:8px;animation:ringShake 1s ease-in-out infinite;}
-@keyframes ringShake{0%,100%{transform:rotate(0);}15%{transform:rotate(-18deg);}30%{transform:rotate(18deg);}45%{transform:rotate(-10deg);}60%{transform:rotate(10deg);}75%{transform:rotate(-5deg);}90%{transform:rotate(5deg);}}
-.inc-name{font-family:'Syne',sans-serif;font-weight:800;font-size:1.8rem;margin-bottom:4px;}
-.inc-role{font-size:12px;color:var(--muted);margin-bottom:24px;font-family:'Share Tech Mono',monospace;letter-spacing:1px;}
-.inc-type{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;margin-bottom:20px;}
-.inc-btns{display:flex;gap:12px;}
-.btn-accept{flex:1;padding:14px;border-radius:14px;border:none;cursor:pointer;background:rgba(62,207,106,.18);color:var(--pulu);font-family:'Syne',sans-serif;font-weight:700;font-size:14px;border:1px solid rgba(62,207,106,.4);}
-.btn-accept:active{background:rgba(62,207,106,.4);}
-.btn-decline{flex:1;padding:14px;border-radius:14px;border:none;cursor:pointer;background:rgba(255,50,50,.1);color:#ff5050;font-family:'Syne',sans-serif;font-weight:700;font-size:14px;border:1px solid rgba(255,50,50,.25);}
-.btn-decline:active{background:rgba(255,50,50,.3);}
+.incoming-card{background:var(--card);border:1px solid;border-radius:24px;padding:32px;text-align:center;width:min(320px,88vw);}
+.btn-accept{padding:14px;border-radius:14px;background:rgba(62,207,106,.18);color:var(--pulu);font-weight:700;border:1px solid rgba(62,207,106,.4);width:100%;margin-top:15px;cursor:pointer;}
 
-/* TOAST */
-.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--card);border:1px solid var(--border);border-radius:12px;padding:10px 18px;font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:1px;color:var(--text);transition:transform .3s;z-index:600;white-space:nowrap;max-width:90vw;text-align:center;}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--card);border:1px solid var(--border);border-radius:12px;padding:10px 18px;transition:transform .3s;z-index:600;}
 .toast.show{transform:translateX(-50%) translateY(0);}
 </style>
 </head>
@@ -151,25 +99,20 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--bg);colo
 <div class="grid-bg"></div>
 
 <div id="incomingCall">
-  <div class="incoming-card inc-pulse" id="incCard">
-    <div class="inc-label">📞 PANGGILAN MASUK</div>
-    <span class="inc-symbol" id="incSymbol">◎</span>
-    <div class="inc-name" id="incName">—</div>
-    <div class="inc-role" id="incRole">—</div>
-    <div class="inc-type" id="incType">VOICE + CHAT</div>
-    <div class="inc-btns">
-      <button class="btn-accept" onclick="acceptCall()">✓ Angkat</button>
-      <button class="btn-decline" onclick="declineCall()">✕ Tolak</button>
-    </div>
+  <div class="incoming-card" id="incCard">
+    <div style="font-family:'Share Tech Mono';font-size:10px;margin-bottom:10px;color:var(--muted)">📞 PANGGILAN RADAR</div>
+    <div id="incName" style="font-family:'Syne';font-size:1.8rem;font-weight:800;">—</div>
+    <div id="incRole" style="font-family:'Share Tech Mono';font-size:11px;margin-top:5px;opacity:.6">—</div>
+    <button class="btn-accept" onclick="acceptCall()">ANGKAT PANGGILAN</button>
+    <button onclick="declineCall()" style="background:transparent;border:none;color:var(--muted);margin-top:15px;cursor:pointer;font-size:11px;">ABAIKAN</button>
   </div>
 </div>
 
 <div class="toast" id="toast"></div>
 
 <div class="screen active" id="screenSelect">
-  <div class="logo">// INSIGNIA SIX · COMMUNICATION LINK</div>
-  <div class="screen-title">Pilih Identitasmu</div>
-  <div class="screen-sub">[ KONEKSI DARURAT RADAR ]</div>
+  <div class="logo">// INSIGNIA SIX · RADAR</div>
+  <div class="screen-title">Pilih Identitas</div>
   <div class="char-grid" id="charGrid"></div>
   <div id="connectStatus"></div>
 </div>
@@ -182,46 +125,29 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--bg);colo
           <div class="my-dot" id="myDot"></div>
           <div class="my-name" id="myName">—</div>
         </div>
-        <div class="online-dot"></div>
       </div>
-      <button class="btn-secondary" style="width:auto;padding:8px 16px;margin:0;" onclick="logout()">KELUAR</button>
+      <button class="btn-secondary" style="padding:8px;font-size:9px;" onclick="location.reload()">KELUAR</button>
     </div>
-
-    <div class="section-label">Insignia Online</div>
-    <div class="online-list" id="onlineList">
-      <div class="empty-state" id="emptyState">
-        Mendeteksi insignia lain...<br><br>
-        Bagikan link ke teman:<br>
-        <span id="shareLink" style="color:var(--pena);word-break:break-all;font-size:9px;"></span>
-      </div>
-    </div>
-
-    <div class="section-label" style="margin-top:4px;">Panggilan Group</div>
-    <button class="btn-group" id="btnGroup" onclick="startGroupCall()">
-      <span>⬡</span> Panggil Semua Insignia
-    </button>
-    <button class="btn-secondary" onclick="logout()">↩ Ganti Karakter</button>
+    <div style="font-family:'Share Tech Mono';font-size:9px;margin-bottom:15px;color:var(--muted)">INSIGNIA TERDETEKSI:</div>
+    <div class="online-list" id="onlineList"></div>
   </div>
 </div>
 
 <div class="screen" id="screenCall">
   <div class="call-wrap">
     <div class="call-header">
-      <div class="call-status-label" id="callStatusLabel">TERHUBUNG</div>
       <div class="call-with" id="callWith">—</div>
       <div class="call-timer" id="callTimer">00:00</div>
     </div>
-    <div class="avatars-row" id="avatarsRow"></div>
     <div class="chat-area" id="chatArea"></div>
     <div class="chat-input-row">
-      <button class="btn-send" style="background:rgba(255,80,80,.15);color:#ff5050;border-color:rgba(255,80,80,.3);" onclick="sendLocation()" title="Kirim Lokasi Darurat (GPS)">📍</button>
-      <input class="chat-input" id="chatInput" placeholder="Ketik pesan..." maxlength="300" autocomplete="off">
+      <button class="btn-send" onclick="sendLocation()">📍</button>
+      <input class="chat-input" id="chatInput" placeholder="Ketik pesan..." autocomplete="off">
       <button class="btn-send" onclick="sendMsg()">↑</button>
     </div>
     <div class="call-controls">
-      <button class="ctrl-btn ctrl-speaker" id="btnSpeaker" onclick="toggleSpeaker()">🔊</button>
       <button class="ctrl-btn ctrl-end" onclick="endCall()">📵</button>
-      <button class="ctrl-btn ctrl-mute" id="btnMute" onclick="toggleMute()">🎤</button>
+      <button class="ctrl-btn" id="btnMute" style="background:rgba(255,255,255,.05);color:white;" onclick="toggleMute()">🎤</button>
     </div>
   </div>
 </div>
@@ -229,7 +155,6 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--bg);colo
 <audio id="remoteAudio" autoplay playsinline></audio>
 
 <script>
-// ── CHARS WITH IDs ──
 const CHARS = {
   MIO:  {id:'I.S-01', name:'MIO',  role:'Metakognisi', color:'#f0f4ff', symbol:'◎', border:'rgba(240,244,255,.2)'},
   PENA: {id:'I.S-02', name:'PENA', role:'Struktur',    color:'#4a8edb', symbol:'△', border:'rgba(74,142,219,.3)'},
@@ -239,503 +164,199 @@ const CHARS = {
   AL:   {id:'I.S-06', name:'AL',   role:'Kritik',      color:'#888888', symbol:'□', border:'rgba(136,136,136,.25)'},
 };
 
-const SVG = {
-  MIO:`<circle cx="30" cy="30" r="22" fill="none" stroke="currentColor" stroke-width="1.5" opacity=".4"/>
-       <ellipse cx="30" cy="30" rx="20" ry="10" fill="none" stroke="currentColor" stroke-width="1.5"/>
-       <circle cx="30" cy="30" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/>
-       <circle cx="30" cy="30" r="2.5" fill="currentColor"/>`,
-  PENA:`<polygon points="30,8 52,44 8,44" fill="none" stroke="currentColor" stroke-width="1.5"/>
-        <polygon points="30,18 44,40 16,40" fill="none" stroke="currentColor" stroke-width="1" opacity=".5"/>
-        <circle cx="30" cy="32" r="3" fill="currentColor"/>`,
-  VANIA:`<circle cx="30" cy="30" r="20" fill="none" stroke="currentColor" stroke-width="1" opacity=".4"/>
-         <path d="M30 10 Q50 20 50 30 Q50 40 30 50 Q10 40 10 30 Q10 20 30 10Z" fill="none" stroke="currentColor" stroke-width="1.5"/>
-         <path d="M22 30 Q30 18 38 30 Q30 42 22 30Z" fill="currentColor" opacity=".8"/>`,
-  MIZU:`<path d="M10 30 Q20 18 30 30 Q40 42 50 30" fill="none" stroke="currentColor" stroke-width="2"/>
-        <path d="M10 22 Q20 10 30 22 Q40 34 50 22" fill="none" stroke="currentColor" stroke-width="1" opacity=".4"/>
-        <circle cx="30" cy="30" r="4" fill="none" stroke="currentColor" stroke-width="1.5"/>`,
-  PULU:`<polygon points="30,10 50,21 50,39 30,50 10,39 10,21" fill="none" stroke="currentColor" stroke-width="1.5"/>
-        <polygon points="30,18 42,24 42,36 30,42 18,36 18,24" fill="none" stroke="currentColor" stroke-width="1" opacity=".4"/>
-        <circle cx="30" cy="30" r="4" fill="currentColor"/>`,
-  AL:`<rect x="12" y="12" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5"/>
-      <rect x="20" y="20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1" opacity=".5"/>
-      <line x1="12" y1="12" x2="48" y2="48" stroke="currentColor" stroke-width="1" opacity=".4"/>
-      <line x1="48" y1="12" x2="12" y2="48" stroke="currentColor" stroke-width="1" opacity=".4"/>
-      <rect x="26" y="26" width="8" height="8" fill="currentColor" opacity=".7"/>`,
-};
-
-// ── STATE & IDENTIFIERS ──
 let myChar = null, peer = null, myStream = null;
-let activeCalls = {}, dataConns = {}, presenceConns = {};
+let dataConns = {}, activeCalls = {};
 let onlineChars = new Set();
-let incomingCallObj = null, incomingCallerChar = null;
+let incomingCallObj = null;
 let callTimer = null, callSec = 0;
-let isMuted = false, isSpeakerOff = false;
-let pingInterval = null;
-let ringCtx = null, ringTimers = [];
+let isMuted = false;
 
-// Unique Prefix based on IDs to avoid public server collision
-const PREFIX = 'ins6-radar-'; 
-const pid = k => PREFIX + CHARS[k].id.replace('.','').replace('-',''); 
-const nameOf = id => {
-  const cleanId = id.replace(PREFIX,'');
-  for(let [key, val] of Object.entries(CHARS)) {
-    if(val.id.replace('.','').replace('-','') === cleanId) return key;
-  }
-  return id;
-};
+const PREFIX = 'ins6-v2-';
+const pid = k => PREFIX + k.toLowerCase();
 
-// ── BUILD SELECT ──
+// Build Grid
 const grid = document.getElementById('charGrid');
 Object.entries(CHARS).forEach(([k,ch])=>{
   const btn = document.createElement('div');
   btn.className = 'char-btn';
-  btn.style.cssText = `border-color:${ch.border};`;
-  btn.innerHTML = `<div class="cb-id">${ch.id}</div>
-    <span class="cb-symbol" style="color:${ch.color}">${ch.symbol}</span>
-    <div class="cb-name" style="color:${ch.color}">${ch.name}</div>
-    <div class="cb-role">${ch.role}</div>`;
+  btn.style.borderColor = ch.border;
+  btn.innerHTML = `<span style="color:${ch.color};font-size:1.5rem">${ch.symbol}</span><div style="color:${ch.color};font-weight:800">${ch.name}</div><div style="font-size:8px;opacity:.5">${ch.role}</div>`;
   btn.onclick = () => selectChar(k);
   grid.appendChild(btn);
 });
 
-// ── SELECT ──
 function selectChar(k){
-  const statusEl = document.getElementById('connectStatus');
-  statusEl.textContent = 'Menghubungkan Radar...';
   myChar = k;
+  document.getElementById('connectStatus').textContent = 'Menghubungkan...';
+  peer = new Peer(pid(k), { host:'0.peerjs.com', port:443, secure:true });
 
-  peer = new Peer(pid(k),{
-    host:'0.peerjs.com', port:443, secure:true, path:'/',
-    config:{iceServers:[
-      {urls:'stun:stun.l.google.com:19302'},
-      {urls:'stun:stun2.l.google.com:19302'}
-    ]}
-  });
-
-  peer.on('open', ()=>{
-    statusEl.textContent = '';
-    setupLobby();
+  peer.on('open', () => {
     showScreen('screenLobby');
-    pingAllPresence();
-    pingInterval = setInterval(pingAllPresence, 5000);
+    setupLobbyUI();
+    setInterval(scanOnline, 3000);
   });
 
-  peer.on('error', err=>{
-    if(err.type==='unavailable-id'){
-      showToast('❌ '+CHARS[k].id+' ('+k+') sudah online! Pilih lain.');
-      statusEl.textContent=''; peer.destroy(); peer=null; myChar=null;
-    } else {
-      showToast('⚠️ Error: '+err.type);
-      statusEl.textContent='';
-    }
+  peer.on('connection', conn => {
+    handleConnection(conn);
   });
 
-  peer.on('call', handleIncomingCall);
-
-  peer.on('connection', conn=>{
-    const type = conn.metadata?.type;
-    if(type === 'presence'){
-      conn.on('open',()=>{
-        const who = nameOf(conn.peer);
-        if(CHARS[who]){ addOnline(who); conn.send({type:'presence-ack',from:myChar}); }
-        conn.on('data', d=>{ if(d?.type==='presence-bye') removeOnline(nameOf(conn.peer)); });
-        conn.on('close',()=> removeOnline(nameOf(conn.peer)));
-      });
-    } else {
-      conn.on('open',()=>{});
-      conn.on('data', d=> receiveChatMsg(d));
-      dataConns[conn.peer] = conn;
-    }
+  peer.on('call', call => {
+    incomingCallObj = call;
+    const caller = call.peer.replace(PREFIX, '').toUpperCase();
+    document.getElementById('incName').textContent = CHARS[caller]?.name || 'UNKNOWN';
+    document.getElementById('incRole').textContent = CHARS[caller]?.role || '';
+    document.getElementById('incCard').style.borderColor = CHARS[caller]?.color || '#fff';
+    document.getElementById('incomingCall').classList.add('show');
   });
 }
 
-// ── PRESENCE ──
-function pingAllPresence(){
-  Object.keys(CHARS).filter(k=>k!==myChar).forEach(k=>pingOne(k));
+function scanOnline(){
+  Object.keys(CHARS).forEach(k => {
+    if(k === myChar) return;
+    const conn = peer.connect(pid(k), { metadata: { type: 'ping' } });
+    conn.on('open', () => { onlineChars.add(k); renderOnline(); conn.close(); });
+  });
 }
 
-function pingOne(k){
-  if(presenceConns[k]?.open) return;
-  try{
-    const c = peer.connect(pid(k),{metadata:{type:'presence',from:myChar},reliable:true});
-    presenceConns[k] = c;
-    c.on('open',()=>{ addOnline(k); });
-    c.on('data', d=>{ if(d?.type==='presence-ack') addOnline(nameOf(c.peer)); });
-    c.on('close',()=>{ removeOnline(k); delete presenceConns[k]; });
-    c.on('error',()=>{ delete presenceConns[k]; });
-  } catch(e){}
+function handleConnection(conn) {
+  const sender = conn.peer.replace(PREFIX, '').toUpperCase();
+  dataConns[conn.peer] = conn;
+  conn.on('data', data => {
+    if(data.type === 'chat') appendMsg(data, false);
+  });
 }
 
-function addOnline(k){
-  if(!CHARS[k] || k === myChar) return;
-  onlineChars.add(k);
-  renderOnlineList();
+async function callChar(k) {
+  showToast('📞 Menghubungi ' + k + '...');
+  try {
+    myStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    const call = peer.call(pid(k), myStream);
+    const conn = peer.connect(pid(k));
+    
+    handleConnection(conn);
+    
+    call.on('stream', stream => {
+      startCallUI(k);
+      document.getElementById('remoteAudio').srcObject = stream;
+    });
+    activeCalls[call.peer] = call;
+  } catch (e) { showToast('❌ Akses Mic Ditolak'); }
 }
 
-function removeOnline(k){
-  onlineChars.delete(k);
-  renderOnlineList();
+async function acceptCall() {
+  document.getElementById('incomingCall').classList.remove('show');
+  try {
+    myStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    incomingCallObj.answer(myStream);
+    const caller = incomingCallObj.peer.replace(PREFIX, '').toUpperCase();
+    
+    incomingCallObj.on('stream', stream => {
+      startCallUI(caller);
+      document.getElementById('remoteAudio').srcObject = stream;
+    });
+    activeCalls[incomingCallObj.peer] = incomingCallObj;
+  } catch (e) { showToast('❌ Gagal akses Mic'); }
 }
 
-function renderOnlineList(){
+function startCallUI(k) {
+  showScreen('screenCall');
+  document.getElementById('callWith').textContent = CHARS[k].symbol + ' ' + CHARS[k].name;
+  document.getElementById('callWith').style.color = CHARS[k].color;
+  
+  callSec = 0;
+  clearInterval(callTimer);
+  callTimer = setInterval(() => {
+    callSec++;
+    document.getElementById('callTimer').textContent = 
+      String(Math.floor(callSec/60)).padStart(2,'0') + ':' + String(callSec%60).padStart(2,'0');
+  }, 1000);
+}
+
+function sendMsg() {
+  const inp = document.getElementById('chatInput');
+  const txt = inp.value.trim();
+  if(!txt) return;
+
+  const payload = { type: 'chat', sender: myChar, text: txt };
+  Object.values(dataConns).forEach(c => { if(c.open) c.send(payload); });
+  appendMsg(payload, true);
+  inp.value = '';
+}
+
+function sendLocation() {
+  navigator.geolocation.getCurrentPosition(p => {
+    const link = `https://www.google.com/maps?q=${p.coords.latitude},${p.coords.longitude}`;
+    const payload = { type: 'chat', sender: myChar, text: `📍 LOKASI DARURAT: ${link}` };
+    Object.values(dataConns).forEach(c => { if(c.open) c.send(payload); });
+    appendMsg(payload, true);
+  });
+}
+
+function appendMsg(d, mine) {
+  const area = document.getElementById('chatArea');
+  const div = document.createElement('div');
+  div.className = 'msg ' + (mine ? 'mine' : '');
+  div.innerHTML = `<div class="msg-bubble" style="border-color:${CHARS[d.sender].color}">
+    <div style="font-size:9px;font-weight:800;color:${CHARS[d.sender].color}">${d.sender}</div>
+    ${d.text}
+  </div>`;
+  area.appendChild(div);
+  area.scrollTop = area.scrollHeight;
+}
+
+function toggleMute() {
+  isMuted = !isMuted;
+  myStream.getAudioTracks()[0].enabled = !isMuted;
+  document.getElementById('btnMute').textContent = isMuted ? '🔇' : '🎤';
+  showToast(isMuted ? 'Mic Off' : 'Mic On');
+}
+
+function endCall() {
+  location.reload(); // Cara paling aman reset WebRTC
+}
+
+function renderOnline() {
   const list = document.getElementById('onlineList');
   list.innerHTML = '';
-  if(onlineChars.size === 0){
-    list.innerHTML = `<div class="empty-state">Belum ada insignia lain online<br><br>
-      Bagikan link ke teman:<br>
-      <span style="color:var(--pena);word-break:break-all;font-size:9px;">${location.href}</span></div>`;
-    document.getElementById('btnGroup').disabled = true;
-    return;
-  }
-  document.getElementById('btnGroup').disabled = false;
-  onlineChars.forEach(k=>{
+  onlineChars.forEach(k => {
     const ch = CHARS[k];
     const item = document.createElement('div');
     item.className = 'online-item';
     item.innerHTML = `
       <div class="oi-left">
-        <div class="oi-dot" style="background:${ch.color};box-shadow:0 0 6px ${ch.color}"></div>
-        <div>
-          <div class="oi-name" style="color:${ch.color}">${ch.symbol} ${ch.id}</div>
-          <div class="oi-role">${ch.name} · ${ch.role}</div>
-        </div>
+        <div class="oi-dot" style="background:${ch.color}"></div>
+        <div><div class="oi-name">${ch.name}</div><div class="oi-role">${ch.role}</div></div>
       </div>
-      <div class="oi-actions">
-        <button class="btn-call btn-chat" onclick="openDM('${k}')">💬</button>
-        <button class="btn-call btn-voice" onclick="callChar('${k}')">📞</button>
+      <div>
+        <button class="btn-call btn-voice" onclick="callChar('${k}')">HUBUNGI</button>
       </div>`;
     list.appendChild(item);
   });
 }
 
-// ── LOBBY SETUP ──
-function setupLobby(){
+function setupLobbyUI() {
   const ch = CHARS[myChar];
-  document.getElementById('myDot').style.cssText = `background:${ch.color};box-shadow:0 0 6px ${ch.color}`;
-  document.getElementById('myName').textContent = ch.id + ' (' + myChar + ')';
-  document.getElementById('myName').style.color = ch.color;
+  document.getElementById('myName').textContent = ch.id + ' (' + ch.name + ')';
+  document.getElementById('myDot').style.background = ch.color;
   document.getElementById('myBadge').style.borderColor = ch.border;
-  document.getElementById('shareLink').textContent = location.href;
 }
 
-// ── CALL OUT ──
-async function callChar(k){
-  showToast('📞 Memanggil '+CHARS[k].id+'...');
-  try{ myStream = await navigator.mediaDevices.getUserMedia({audio:true,video:false}); }
-  catch(e){ showToast('❌ Izin mikrofon ditolak'); return; }
-
-  const call = peer.call(pid(k), myStream, {metadata:{callerChar:myChar}});
-  activeCalls[pid(k)] = call;
-
-  const dc = peer.connect(pid(k),{metadata:{type:'chat',from:myChar},reliable:true});
-  dataConns[pid(k)] = dc;
-  dc.on('data', d=> receiveChatMsg(d));
-
-  let answered = false;
-  call.on('stream', remote=>{
-    if(!answered){ answered=true; startCallScreen([k]); }
-    addRemoteAudio(remote);
-  });
-  call.on('close',()=>endCall());
-  call.on('error',()=>{ showToast('❌ Panggilan gagal'); endCall(); });
-
-  setTimeout(()=>{ if(!answered){ showToast('📵 Tidak diangkat'); endCall(); } },30000);
-}
-
-// ── GROUP CALL ──
-async function startGroupCall(){
-  const targets = [...onlineChars];
-  if(!targets.length){ showToast('Tidak ada yang online'); return; }
-  showToast('📞 Memanggil semua insignia...');
-  try{ myStream = await navigator.mediaDevices.getUserMedia({audio:true,video:false}); }
-  catch(e){ showToast('❌ Izin mikrofon ditolak'); return; }
-
-  targets.forEach(k=>{
-    const call = peer.call(pid(k), myStream, {metadata:{callerChar:myChar,isGroup:true}});
-    activeCalls[pid(k)] = call;
-    call.on('stream', remote=> addRemoteAudio(remote));
-    call.on('close',()=>{ delete activeCalls[pid(k)]; });
-
-    const dc = peer.connect(pid(k),{metadata:{type:'chat',from:myChar},reliable:true});
-    dataConns[pid(k)] = dc;
-    dc.on('data', d=> receiveChatMsg(d));
-  });
-
-  startCallScreen(targets);
-}
-
-// ── DM ONLY ──
-function openDM(k){
-  const dc = peer.connect(pid(k),{metadata:{type:'chat',from:myChar},reliable:true});
-  dataConns[pid(k)] = dc;
-  dc.on('open',()=> showToast('💬 Chat dengan '+CHARS[k].id+' siap'));
-  dc.on('data', d=> receiveChatMsg(d));
-  startCallScreen([k], true);
-}
-
-// ── INCOMING CALL ──
-function handleIncomingCall(call){
-  const callerChar = call.metadata?.callerChar || nameOf(call.peer);
-  const ch = CHARS[callerChar]||{id:'UNKNOWN',name:callerChar,role:'',color:'#fff',symbol:'?',border:'rgba(255,255,255,.2)'};
-  incomingCallObj = call;
-  incomingCallerChar = callerChar;
-
-  document.getElementById('incSymbol').textContent = ch.symbol;
-  document.getElementById('incSymbol').style.color = ch.color;
-  document.getElementById('incName').textContent = ch.id;
-  document.getElementById('incName').style.color = ch.color;
-  document.getElementById('incRole').textContent = ch.name;
-  document.getElementById('incCard').style.borderColor = ch.border;
-  document.getElementById('incType').textContent = call.metadata?.isGroup ? 'GROUP CALL' : 'VOICE + CHAT';
-
-  document.getElementById('incomingCall').classList.add('show');
-  playRingtone();
-}
-
-async function acceptCall(){
-  stopRingtone();
-  document.getElementById('incomingCall').classList.remove('show');
-  if(!incomingCallObj) return;
-  try{ myStream = await navigator.mediaDevices.getUserMedia({audio:true,video:false}); }
-  catch(e){ showToast('❌ Izin mikrofon ditolak'); return; }
-
-  incomingCallObj.answer(myStream);
-  activeCalls[incomingCallObj.peer] = incomingCallObj;
-  incomingCallObj.on('stream', remote=> addRemoteAudio(remote));
-  incomingCallObj.on('close',()=> endCall());
-  startCallScreen([incomingCallerChar]);
-}
-
-function declineCall(){
-  stopRingtone();
-  document.getElementById('incomingCall').classList.remove('show');
-  if(incomingCallObj) incomingCallObj.close();
-  incomingCallObj = null; incomingCallerChar = null;
-}
-
-// ── CALL SCREEN ──
-function startCallScreen(charKeys, chatOnly=false){
-  clearInterval(pingInterval);
-  showScreen('screenCall');
-
-  document.getElementById('callStatusLabel').textContent = chatOnly ? 'CHAT AKTIF' : 'TERHUBUNG';
-  document.getElementById('callWith').textContent = charKeys.map(k=> CHARS[k]?.symbol+' '+CHARS[k]?.id).join('  ');
-
-  const row = document.getElementById('avatarsRow');
-  row.innerHTML = '';
-  addAvatar(row, myChar, true);
-  charKeys.forEach(k=> addAvatar(row, k, false));
-
-  callSec = 0;
-  clearInterval(callTimer);
-  if(!chatOnly){
-    callTimer = setInterval(()=>{
-      callSec++;
-      document.getElementById('callTimer').textContent =
-        String(Math.floor(callSec/60)).padStart(2,'0')+':'+String(callSec%60).padStart(2,'0');
-    },1000);
-  } else { document.getElementById('callTimer').textContent = ''; }
-
-  const area = document.getElementById('chatArea');
-  area.innerHTML = '';
-  addSysMsg('— Terhubung dengan '+charKeys.map(k=>CHARS[k].id).join(', ')+' —');
-
-  const inp = document.getElementById('chatInput');
-  inp.onkeydown = e=>{ if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();} };
-}
-
-function addAvatar(row, k, isMe){
-  const ch = CHARS[k]||{id:k,name:k,color:'#fff',symbol:'?'};
-  const d = document.createElement('div');
-  d.className='avatar'; d.id='av-'+k;
-  d.innerHTML=`<div class="avatar-ring" id="avring-${k}" style="border-color:${ch.color};color:${ch.color};box-shadow:0 0 14px ${ch.color}22">
-    <svg class="avatar-symbol" viewBox="0 0 60 60" style="color:${ch.color}">${SVG[k]||''}</svg>
-    <div class="muted-badge" id="mutebadge-${k}">🔇</div>
-  </div>
-  <div class="avatar-name" style="color:${ch.color}">${ch.symbol} ${ch.id}${isMe?' (me)':''}</div>`;
-  row.appendChild(d);
-}
-
-// ── GPS TRACKING ──
-function sendLocation(){
-  if(!navigator.geolocation){
-    showToast("❌ GPS tidak didukung di perangkat/browser ini.");
-    return;
-  }
-  showToast("📍 Melacak koordinat darurat...");
-  navigator.geolocation.getCurrentPosition(
-    (position) => {
-      const lat = position.coords.latitude;
-      const lng = position.coords.longitude;
-      const mapsLink = `https://www.google.com/maps?q=${lat},${lng}`;
-      const text = `<strong style="color:#ff5050;">🚨 LOKASI DARURAT:</strong><br><a href="${mapsLink}" target="_blank" style="color:var(--text);text-decoration:underline;">📍 Buka di Google Maps</a>`;
-      
-      const payload = {type:'chat', sender:myChar, text, isHtml:true, ts:Date.now()};
-      Object.values(dataConns).forEach(dc=>{ try{if(dc.open) dc.send(payload);}catch(e){} });
-      appendMsg(payload, true);
-    },
-    (error) => {
-      showToast("❌ Gagal melacak lokasi. Pastikan izin GPS aktif.");
-    },
-    { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 }
-  );
-}
-
-// ── CHAT ──
-function sendMsg(){
-  const inp = document.getElementById('chatInput');
-  const text = inp.value.trim(); if(!text) return;
-  inp.value = '';
-  const payload = {type:'chat',sender:myChar,text,isHtml:false,ts:Date.now()};
-  Object.values(dataConns).forEach(dc=>{ try{if(dc.open) dc.send(payload);}catch(e){} });
-  appendMsg(payload, true);
-}
-
-function receiveChatMsg(d){
-  if(d?.type==='chat') appendMsg(d, false);
-}
-
-function appendMsg(d, mine){
-  const ch = CHARS[d.sender]||{id:'?',name:d.sender,color:'#fff',symbol:''};
-  const area = document.getElementById('chatArea');
-  const div = document.createElement('div');
-  div.className = 'msg'+(mine?' mine':'');
-  
-  const content = d.isHtml ? d.text : esc(d.text);
-  
-  div.innerHTML=`<div class="msg-dot" style="background:${ch.color}"></div>
-    <div class="msg-bubble" style="${d.isHtml ? 'border-color:#ff5050;background:rgba(255,80,80,.1)' : ''}">
-      <div class="msg-sender" style="color:${ch.color}">${ch.symbol} ${ch.id}</div>${content}
-    </div>`;
-  area.appendChild(div);
-  area.scrollTop = area.scrollHeight;
-}
-
-function addSysMsg(txt){
-  const area = document.getElementById('chatArea');
-  const d = document.createElement('div'); d.className='sys-msg'; d.textContent=txt;
-  area.appendChild(d); area.scrollTop=area.scrollHeight;
-}
-
-function esc(s){ const d=document.createElement('div');d.textContent=s;return d.innerHTML; }
-
-// ── AUDIO ──
-const audioEls = [];
-function addRemoteAudio(stream){
-  let el = document.getElementById('remoteAudio');
-  if(el.srcObject){ el = document.createElement('audio'); el.autoplay=true; el.setAttribute('playsinline',''); document.body.appendChild(el); audioEls.push(el); }
-  el.srcObject = stream;
-  el.play().catch(()=>{});
-}
-
-function cleanupAudio(){
-  const main = document.getElementById('remoteAudio');
-  main.srcObject=null;
-  audioEls.forEach(el=>{ try{el.srcObject=null;el.remove();}catch(e){} });
-  audioEls.length=0;
-}
-
-// ── RINGTONE ──
-function playRingtone(){
-  stopRingtone();
-  ringCtx = new(window.AudioContext||window.webkitAudioContext)();
-  function tick(){
-    if(!ringCtx) return;
-    const t = ringCtx.currentTime;
-    const rev = makeRev(ringCtx,1.5,2);
-    const mg = ringCtx.createGain(); mg.gain.setValueAtTime(.3,t);
-    rev.connect(mg); mg.connect(ringCtx.destination);
-    [[369.99,0,.6],[493.88,.18,.6],[369.99,.5,.5],[0,0,0]].forEach(([f,d,dr])=>{
-      if(!f) return;
-      const o=ringCtx.createOscillator(),g=ringCtx.createGain();
-      o.type='sine'; o.frequency.setValueAtTime(f,t+d);
-      g.gain.setValueAtTime(0,t+d); g.gain.linearRampToValueAtTime(.5,t+d+.02);
-      g.gain.exponentialRampToValueAtTime(.0001,t+d+dr);
-      o.connect(g); g.connect(rev);
-      o.start(t+d); o.stop(t+d+dr+.05);
-    });
-    const lo=ringCtx.createOscillator(),lg=ringCtx.createGain();
-    lo.type='sine'; lo.frequency.setValueAtTime(123.47,t);
-    lg.gain.setValueAtTime(0,t); lg.gain.linearRampToValueAtTime(.08,t+.05);
-    lg.gain.exponentialRampToValueAtTime(.0001,t+.4);
-    lo.connect(lg); lg.connect(mg);
-    lo.start(t); lo.stop(t+.5);
-    ringTimers.push(setTimeout(tick, 1800));
-  }
-  tick();
-}
-
-function stopRingtone(){
-  ringTimers.forEach(clearTimeout); ringTimers=[];
-  if(ringCtx){ try{ringCtx.close();}catch(e){} ringCtx=null; }
-}
-
-function makeRev(ctx,dur,decay){
-  const len=ctx.sampleRate*dur, buf=ctx.createBuffer(2,len,ctx.sampleRate);
-  for(let c=0;c<2;c++){const d=buf.getChannelData(c);for(let i=0;i<len;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/len,decay);}
-  const conv=ctx.createConvolver(); conv.buffer=buf; return conv;
-}
-
-// ── CONTROLS ──
-function toggleMute(){
-  if(!myStream) return;
-  isMuted=!isMuted;
-  myStream.getAudioTracks().forEach(t=>t.enabled=!isMuted);
-  const btn=document.getElementById('btnMute');
-  btn.classList.toggle('muted',isMuted);
-  btn.textContent=isMuted?'🔇':'🎤';
-  const badge=document.getElementById('mutebadge-'+myChar);
-  if(badge) badge.classList.toggle('show',isMuted);
-  showToast(isMuted?'🔇 Mikrofon mati':'🎤 Mikrofon aktif');
-}
-
-function toggleSpeaker(){
-  isSpeakerOff=!isSpeakerOff;
-  document.getElementById('remoteAudio').muted=isSpeakerOff;
-  audioEls.forEach(el=>el.muted=isSpeakerOff);
-  document.getElementById('btnSpeaker').textContent=isSpeakerOff?'🔈':'🔊';
-  showToast(isSpeakerOff?'🔈 Speaker mati':'🔊 Speaker aktif');
-}
-
-function endCall(){
-  clearInterval(callTimer);
-  Object.values(activeCalls).forEach(c=>{ try{c.close();}catch(e){} }); activeCalls={};
-  Object.values(dataConns).forEach(d=>{ try{d.close();}catch(e){} }); dataConns={};
-  if(myStream){ myStream.getTracks().forEach(t=>t.stop()); myStream=null; }
-  cleanupAudio();
-  isMuted=false; isSpeakerOff=false;
-  document.getElementById('btnMute').classList.remove('muted');
-  document.getElementById('btnMute').textContent='🎤';
-  document.getElementById('btnSpeaker').textContent='🔊';
-  showScreen('screenLobby');
-  pingInterval=setInterval(pingAllPresence,5000);
-  pingAllPresence();
-  showToast('📵 Panggilan diakhiri');
-}
-
-// ── UTILS ──
-function showScreen(id){
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 }
 
-let toastTimer;
-function showToast(msg){
-  const t=document.getElementById('toast');
-  t.textContent=msg; t.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer=setTimeout(()=>t.classList.remove('show'),3000);
+function showToast(m) {
+  const t = document.getElementById('toast');
+  t.textContent = m; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
 }
 
-function logout(){
-  clearInterval(pingInterval); clearInterval(callTimer);
-  Object.values(presenceConns).forEach(c=>{ try{if(c.open)c.send({type:'presence-bye'});}catch(e){} });
-  if(peer){ peer.destroy(); peer=null; }
-  if(myStream){ myStream.getTracks().forEach(t=>t.stop()); myStream=null; }
-  activeCalls={}; dataConns={}; presenceConns={}; onlineChars=new Set();
-  myChar=null; isMuted=false; isSpeakerOff=false;
-  showScreen('screenSelect');
+function declineCall() {
+  document.getElementById('incomingCall').classList.remove('show');
+  if(incomingCallObj) incomingCallObj.close();
 }
 </script>
 </body>
 </html>
+ 
